@@ -1,14 +1,17 @@
-import Page1 from "./component/Page1"
-
+import StateMarge from "./component/StateMarge"
 function App() {
   return (
     <div className="App">
      未知知识补充
-     <div>
-       <Page1/>
-     </div>
+    
+      
+       
+       <StateMarge/>
+    
     </div>
   );
 }
 
 export default App;
+
+
