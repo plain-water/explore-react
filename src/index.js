@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import "./index.less"
+import App from './App/';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <h1 style={{
-      textAlign: "center"
-    }}
-    >
-      李鸣浩天下第一帅
-    </h1>
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  // </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
 
