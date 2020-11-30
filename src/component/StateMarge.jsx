@@ -11,7 +11,7 @@ export default class StateMarge extends Component {
 
     componentDidMount() {
         document.getElementById("button").addEventListener("click", this.SetCouter)
-        setTimeout(this.SetCouter,0)
+        // setTimeout(this.SetCouter,0)
         //在定时器与原生事件中setState是同步的
         //在生命周期与合成事件中是异步的，
 
@@ -51,7 +51,7 @@ export default class StateMarge extends Component {
         const { counter } = this.state;
 
         return (
-            <div>
+            <div  className="item">
                 <h4>setState</h4>
                 <p>合并成新 counter{counter}</p>
                 <Button type="default" id="button">原生事件click Me</Button>
