@@ -1,5 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import routes from "./config";
+
 export default function RouteConfigExample() {
   return (
     <Switch>
