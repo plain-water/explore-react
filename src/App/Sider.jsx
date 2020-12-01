@@ -1,73 +1,90 @@
-
-import React, { Component } from 'react'
-import { Layout, Menu } from 'antd';
-import routes from "../Router/config"
+import React from "react";
+import { Layout, Menu } from "antd";
+import routes from "../Router/config";
+import { Link, withRouter } from "react-router-dom";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
-export default class LSider extends Component {
-    state = {
-        collapsed: false,
+class RoutersSidercustom extends React.Component {
+  static setMenuOpen = (props) => {
+    const { pathname } = props.location;
+    return {
+      openKey: pathname.substr(0, pathname.lastIndexOf("/")),
+      selectedKey: pathname,
     };
-
-    onCollapse = collapsed => {
-        console.log(collapsed);
-        this.setState({ collapsed });
-    };
-
-    render() {
-console.log(routes)
-        const { collapsed } = this.state;
-        return (
-            <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <div className="logo" />
-                    {
-                        routes.map((v, k) => {
-                            if (v.routes) {
-                                return SubMenuFn(v, k)
-                            } else {
-                                return SubMenuFn(v, k)
-                            }
-                            
-                        })
-                    }
-
-                    {/* <Menu.Item key="1" icon={<PieChartOutlined />}>
-                        Option 1
-              </Menu.Item>
-                    <Menu.Item key="2" icon={<DesktopOutlined />}>
-                        Option 2
-              </Menu.Item>
-                    <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                        <Menu.Item key="3">Tom</Menu.Item>
-                        <Menu.Item key="4">Bill</Menu.Item>
-                        <Menu.Item key="5">Alex</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                        <Menu.Item key="6">Team 1</Menu.Item>
-                        <Menu.Item key="8">Team 2</Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="9" icon={<FileOutlined />}>
-                        Files
-              </Menu.Item> */}
-                </Menu>
-            </Sider>
-        )
+  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.timeKey !== prevState.timeKey) {
+      return {
+        timeKey: nextProps.timeKey,
+      };
     }
+    return null;
+  }
+  state = {
+    collapsed: false,
+    selectedKey: this.props.location.pathname,
+    openKey: "",
+    timeKey: this.props.timeKey,
+  };
+
+  onCollapse = (collapsed) => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  };
+  openMenu = (v) => {
+    this.setState({
+      openKey: v[v.length - 1],
+    });
+  };
+  menuClick = (e) => {
+    let selectedKey = e.key,
+      path = this.props.location.pathname;
+    console.log(path, this.props.location.pathname);
+    this.timer = setTimeout(() => {
+      if (path === "/Welcome" && selectedKey === this.props.location.pathname)
+        return;
+      this.setState({
+        selectedKey,
+      });
+      const { popoverHide } = this.props;
+      popoverHide && popoverHide();
+    }, 100);
+  };
+  render() {
+    const { collapsed } = this.state;
+    return (
+      <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+        <Menu
+          theme="dark"
+          selectedKeys={[this.props.location.pathname]}
+          openKeys={[this.state.openKey]}
+          mode="inline"
+          onClick={this.menuClick}
+          onOpenChange={this.openMenu}
+        >
+          <div className="logo" />
+          {routes.map((v) => (v.routes ? SubMenuFn(v) : SubMenuFn(v)))}
+        </Menu>
+      </Sider>
+    );
+  }
 }
 
-function SubMenuFn(v, k) {
-    console.log(v)
-    return (
-        <SubMenu key={k} icon={v.icon} title={v.name}>
-            {v.routes.map((v,k)=>MenuItem(v,k))}
-        </SubMenu>
-    )
-}
+const SubMenuFn = (v) => {
+  return (
+    <SubMenu key={v.path} icon={v.icon} title={v.name}>
+      {v.routes.map((v) => MenuItem(v))}
+    </SubMenu>
+  );
+};
 
-function MenuItem(v, k) {
-    return (
-        <Menu.Item key={k}>{v.name}</Menu.Item>
-    )
-}
+const MenuItem = (v) => {
+  return (
+    <Menu.Item key={v.path}>
+      <Link to={(v.path || v.key) + (v.query || "")}>{v.name}</Link>
+    </Menu.Item>
+  );
+};
+
+export default withRouter(RoutersSidercustom);

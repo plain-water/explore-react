@@ -13,7 +13,7 @@ const routes = [
     icon: <DesktopOutlined/>,
     routes: [
       {
-        path: "/antdForm/antdForm4",
+        path: "/antdForm/antdForm3",
         name: "antdForm3",
         component:Antform3
       },
