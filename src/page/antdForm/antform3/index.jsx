@@ -52,7 +52,7 @@ class Antform3 extends Component {
         validateFields((type,state)=>{
             console.log(type,state)
             type.forEach(element => {
-                console.error(element);
+                console.error(elementc);
             });
         })
     }
