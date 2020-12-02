@@ -29,7 +29,6 @@ class RoutersSidercustom extends React.Component {
   };
 
   onCollapse = (collapsed) => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
   openMenu = (v) => {
@@ -40,7 +39,6 @@ class RoutersSidercustom extends React.Component {
   menuClick = (e) => {
     let selectedKey = e.key,
       path = this.props.location.pathname;
-    console.log(path, this.props.location.pathname);
     this.timer = setTimeout(() => {
       if (path === "/Welcome" && selectedKey === this.props.location.pathname)
         return;

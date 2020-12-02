@@ -5,7 +5,7 @@ import {  BrowserRouter as Router, } from "react-router-dom";
 
 import Routers from "../Router";
 import RoutersSidercustom from "./Sider";
-const { Header, Content } = Layout;
+const { Content } = Layout;
 // Footer
 
 class App extends React.Component {
