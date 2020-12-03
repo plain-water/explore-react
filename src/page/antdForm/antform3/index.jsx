@@ -48,9 +48,12 @@ class Antform3 extends Component {
     const { validateFields } = this.props.form;
     validateFields((type, state) => {
       console.log(type, state);
-      type.forEach((element) => {
-        console.error(element);
-      });
+      if(type){
+        type.forEach((element) => {
+          console.error(element);
+        });  
+      }
+     
     });
   };
   render() {

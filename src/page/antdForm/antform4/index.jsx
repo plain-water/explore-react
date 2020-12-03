@@ -3,6 +3,7 @@ import "../index.less";
 
 import { Form, Input, Button, Row, Col } from "antd";
 import HookForm from "./HookuseHGForm.js"
+import ComponentuseHGForm from "./ComponentuseHGForm.js"
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -97,7 +98,7 @@ function HGForm() {
         <Col span={12}>
           <HookForm />
         </Col>
-        <Col span={12}>col-12</Col>
+        <Col span={12}><ComponentuseHGForm/></Col>
       </Row>
     </div>
   );
