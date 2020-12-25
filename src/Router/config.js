@@ -5,7 +5,7 @@ import {
   // TeamOutlined,
   // UserOutlined,
 } from '@ant-design/icons';
-import { Antform3, Antform4 } from "../page/index.js"
+import { Antform3, Antform4,ReduxDome } from "../page/index.js"
 const routes = [
   {
     path: "/antdForm",
@@ -23,6 +23,25 @@ const routes = [
         component:Antform4
 
       }
+    ]
+  },
+  {
+    path: "/ReduxSourceCode",
+    name: "redux源码分析",
+    icon: <DesktopOutlined/>,
+    routes: [
+      {
+        path: "/ReduxSourceCode/ReduxDome",
+        name: "ReduxDome",
+        component:ReduxDome
+      }
+      // ,
+      // {
+      //   path: "/antdForm/antdForm4",
+      //   name: "antdForm4",
+      //   component:Antform4
+
+      // }
     ]
   }
 
