@@ -9,7 +9,7 @@ ReactDOM.render(
       textAlign: "center"
     }}
     >
-      李鸣浩天下第一帅
+    
     </h1>
     <App />
   </React.StrictMode>,
